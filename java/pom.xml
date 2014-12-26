@@ -6,6 +6,7 @@
 	<artifactId>stackexample</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>StackExample</name>
+	<packaging>war</packaging>
 
 	<dependencies>
 		<!-- CORE -->
@@ -72,6 +73,44 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<glassfishDirectory>${glassfish.home}</glassfishDirectory>
+					<user>${domain.username}</user>
+					<adminPassword>${domain.password}</adminPassword>
+					<autoCreate>true</autoCreate>
+					<debug>true</debug>
+					<echo>false</echo>
+					<terse>true</terse>
+					<domain>
+						<name>${project.artifactId}</name>
+						<adminPort>4848</adminPort>
+						<httpPort>8080</httpPort>
+						<httpsPort>8443</httpsPort>
+						<iiopPort>3700</iiopPort>
+						<jmsPort>7676</jmsPort>
+						<reuse>false</reuse>
+						<!-- <jvmOptions> -->
+						<!-- <option>-Djava.security.auth.login.config=${project.build.testOutputDirectory}/login.conf</option> -->
+						<!-- </jvmOptions> -->
+						<!-- <properties> -->
+						<!-- <property> -->
+						<!-- <name>server.log-service.file</name> -->
+						<!-- <value>${domain.log.dir}/server.log</value> -->
+						<!-- </property> -->
+						<!-- </properties> -->
+					</domain>
+					<components>
+						<component>
+							<name>${project.name}</name>
+							<artifact>${project.build.directory}/${project.build.finalName}.war</artifact>
+						</component>
+					</components>
 				</configuration>
 			</plugin>
 		</plugins>
