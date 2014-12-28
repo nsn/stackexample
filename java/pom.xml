@@ -64,6 +64,12 @@
 				<version>2.4</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<!-- include swagger doclet generated sources -->
+					<webResources>
+						<resource>
+							<directory>${project.build.directory}/swagger/apidoc</directory>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -75,7 +81,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
+			<!-- embedded glassfish -->
 			<plugin>
 				<groupId>org.glassfish.embedded</groupId>
 				<artifactId>maven-embedded-glassfish-plugin</artifactId>
@@ -97,8 +103,33 @@
 						<version>4.0-b83</version>
 					</dependency>
 				</dependencies>
-
-
+			</plugin>
+			<!-- swagger doclet, see https://github.com/Carma-Public/swagger-jaxrs-doclet -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>generate-service-docs</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<doclet>com.carma.swagger.doclet.ServiceDoclet</doclet>
+							<docletArtifact>
+								<groupId>com.carma</groupId>
+								<artifactId>swagger-doclet</artifactId>
+								<version>1.0.3</version>
+							</docletArtifact>
+							<reportOutputDirectory>${project.build.directory}/swagger/apidoc</reportOutputDirectory>
+							<useStandardDocletOptions>false</useStandardDocletOptions>
+							<additionalparam>-apiVersion 1 -docBasePath /stackexample/apidocs
+								-apiBasePath /stackexample/api</additionalparam>
+						</configuration>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
