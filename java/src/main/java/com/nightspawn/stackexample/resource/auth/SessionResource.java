@@ -3,7 +3,6 @@ package com.nightspawn.stackexample.resource.auth;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,7 +28,7 @@ public class SessionResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createSession(@FormParam(value = "") Credentials creds) {
+    public void createSession(Credentials creds) {
         Username u = new Username(creds.getUsername());
         Password p = new Password(creds.getPassword());
         service.createSession(u, p);
