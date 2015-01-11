@@ -1,5 +1,8 @@
 package com.nightspawn.stackexample.service.session;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +21,8 @@ public class SessionServiceTest {
 
     @Test
     public void testCreateSession() {
-        service.createSession(new Username(USERNAME), new Password(PASSWORD));
+        Session sess = service.createSession(new Username(USERNAME), new Password(PASSWORD));
+        assertThat(sess.getUsername(), equalTo(new Username(USERNAME)));
     }
 
     @Test()

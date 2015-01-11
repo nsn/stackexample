@@ -5,8 +5,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionService {
 
-    public void createSession(Username user, Password pwd) {
-
+    public Session createSession(Username user, Password pwd) {
+        AuthToken tok = new AuthToken("AValidToken");
+        Session sess = new Session(user, tok);
+        return sess;
     }
-
 }

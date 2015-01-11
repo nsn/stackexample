@@ -21,12 +21,15 @@ public class SessionResource {
 
     /**
      * creates a new session
+     * 
+     * @return
      */
     @POST
-    public void createSession(Credentials creds) {
+    public SessionInfo createSession(Credentials creds) {
         Username u = new Username(creds.getUsername());
         Password p = new Password(creds.getPassword());
-        service.createSession(u, p);
+        SessionInfo rv = new SessionInfo(service.createSession(u, p));
+        return rv;
     }
 
 }
