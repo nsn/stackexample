@@ -7,8 +7,15 @@ package com.nightspawn.stackexample.resource.auth;
  * 
  */
 public class Credentials {
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
+
+    /**
+     * default constructor needed for de-serialisaztion
+     */
+    public Credentials() {
+        super();
+    }
 
     public Credentials(String username, String password) {
         super();
