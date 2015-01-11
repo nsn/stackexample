@@ -96,6 +96,49 @@
 					<port>8282</port>
 					<contextRoot>${project.artifactId}</contextRoot>
 				</configuration>
+                <executions>
+                    <!-- Start embedded GlassFish -->
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Run some admin commands -->
+                    <execution>
+                        <id>admin</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>admin</goal>
+                        </goals>
+                        <configuration>
+                            <commands>
+                                <param>list-applications</param>
+                            </commands>
+                        </configuration>
+                    </execution>
+
+                    <!-- Perform normal deployment (first application) using plugin level configurations -->
+                    <execution>
+                        <id>deploy</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Perform normal undeploy (i.e., first app) using plugin level configurations and stop embedded GlassFish -->
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
 				<dependencies>
 					<dependency>
 						<groupId>org.glassfish.main.common</groupId>
