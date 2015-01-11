@@ -8,7 +8,7 @@ either deploy to container of your liking, or
 
 ```mvn embedded-glassfish:run```
 
-then point your browser to [http://localhost:8282/stackexample/apidocs] or just 
+then point your browser to [http://localhost:8282/stackexample/apidocs](http://localhost:8282/stackexample/apidocs) or just 
 
 ```curl -H "Content-Type: application/json" -X POST -d "{ \"username\": \"test\", \"password\": \"test\"}" http://localhost:8282/stackexample/api/session```
 
