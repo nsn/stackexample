@@ -1,5 +1,0 @@
-
-mvn embedded-glassfish:run
-
-http://localhost:8282/stackexample/
-
