@@ -138,7 +138,6 @@
 					<components>
 						<component>
 							<name>${project.artifactId}</name>
-							<contextRoot>${project.artifactId}</contextRoot>
 							<artifact>${project.build.directory}/${project.build.finalName}.war</artifact>
 						</component>
 					</components>
