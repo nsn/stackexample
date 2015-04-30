@@ -22,7 +22,6 @@
 		<servlet-name>RESTServlet</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param> <!-- where to look for resources -->
-			<!-- <param-name>com.sun.jersey.config.property.packages</param-name>  -->
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>com.nightspawn.stackexample</param-value>
 		</init-param>
@@ -30,26 +29,12 @@
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		<!-- 
-		<init-param>
-			<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-			<param-value>com.gameforge.hex.publicapi.filters.OAuthFilter</param-value>
-		</init-param>
-		-->
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.nightspawn.stackexample.Application</param-value>
+        </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
-	<!-- 
-	<servlet>
-		<servlet-name>JerseyJaxrsConfig</servlet-name>
-		<servlet-class>com.wordnik.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
-		<init-param>
-			<param-name>swagger.api.basepath</param-name>
-			<param-value>https://dev.hexdev.gfsrv.net/publicapi</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-	 -->
 
 	<servlet-mapping>
 		<servlet-name>RESTServlet</servlet-name>
